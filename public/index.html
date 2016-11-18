@@ -1,0 +1,102 @@
+<!doctype html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="myTodoApp">
+<head>
+	<!-- META -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+	<title>Keith Hines Todo App</title>
+
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+	<style>
+		html 					{ overflow-y:scroll; }
+		body 					{ padding-top:50px; }
+		#todo-list 				{ margin-bottom:30px; }
+		#todo-form 	 			{ margin-bottom:50px; }
+	</style>
+
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script><!-- load angular -->
+	<!-- Loads jQuery -->
+	<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+	<!-- Latest bootstrap for JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script src="js/controllers/main.js"></script> <!-- load up our controller -->
+	<script src="js/services/todos.js"></script> <!-- load our todo service -->
+	<script src="js/core.js"></script> <!-- load our main application -->
+	
+</head>
+<!-- SET THE CONTROLLER -->
+<body ng-controller="mainController">
+	<div class="container">
+		<!-- HEADER AND TODO COUNT -->
+		<div class="jumbotron text-center">
+			<h1>My Todo List </h1>
+				<p>You have {{ todos.length }} tasks to complete!</p> <!-- keeps a running total of tasks to complete -->
+		</div>
+
+		<!-- FORM TO CREATE TODOS -->
+		<div class = "row" > 		
+			<div class="col-sm-8 col-sm-offset-2 text-center">
+				<div class="input-group">
+					<!-- adds input data to formData.text in angular -->
+					<input type="text" class="form-control input-lg text-center" placeholder="Enter your todo list items here!" ng-model="formData.text">
+					<div class="input-group-btn">
+						<button type="button" class="btn btn-default btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select task priority! <span class="caret"></span></button>
+						<ul class="dropdown-menu dropdown-menu-right">
+							<li><a href="#" ng-click="createHigh()">High Priority Task</a></li> <!-- creates high priority task -->
+							<li><a href="#" ng-click="createLow()">Low Priority Task</a></li> <!-- creates low priority task -->
+						</ul>
+					</div>
+				<!-- /btn-group -->
+				</div>
+			<!-- /input-group -->
+			</div>
+		</div>
+<!-- /.col-lg-6 -->
+<!-- /.row -->
+<br>
+<br>
+
+<!-- Display panel for high priority items. -->
+	<div class = "row" > 
+		<div class = "col-md-6"	>
+			<div class="panel panel-danger">
+				<div class="panel-heading">
+					<h3 class="panel-title">High Priority</h3>
+				</div>
+				<div class="panel-body">
+					<div class="checkbox" ng-repeat="todo in todos" ng-if = "todo.priority == 'high'" > <!-- catches task items with "high priority" -->
+						<label>
+							<input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.text }} <!-- displays task input text -->
+						</label>
+					</div>
+				</div>
+			</div>
+		</div>
+	<div class = "col-md-6"	>
+
+	<!-- Display panel for low priority items. -->
+
+	<div class="panel panel-warning">
+		<div class="panel-heading">
+			<h3 class="panel-title">Low Priority</h3>
+		</div>
+		<div class="panel-body">
+			<div class="checkbox" ng-repeat="todo in todos" ng-if="todo.priority == 'low'">
+				<!-- catches low priority tasks -->
+				<label>
+							<input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.text }} <!-- displays task input text -->
+						</label>
+			</div>
+		</div>
+	</div>
+	</div>
+	</div>	
+	
+</div>
+
+</body>
+</html>
