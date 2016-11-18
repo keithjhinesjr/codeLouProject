@@ -8,4 +8,4 @@
 2. Install the application: Run `npm install` from within project file
 3. Start the server: `node server.js`
 4. View in browser at `http://localhost:8080` 
-5. Let em know what you think.
+5. Let me know what you think.
