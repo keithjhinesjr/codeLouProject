@@ -34,7 +34,8 @@
 		<!-- HEADER AND TODO COUNT -->
 		<div class="jumbotron text-center">
 			<h1>My Todo List </h1>
-				<p>You have {{ todos.length }} tasks to complete!</p> <!-- keeps a running total of tasks to complete -->
+				<p ng-if = "todos.length == '0'">Congrats, you're all caught up!</p>  <!-- this message displays if task count is at '0' -->
+				<p ng-if = "todos.length > '0'">You have {{ todos.length }} tasks to complete!</p> <!-- keeps a running total of tasks to complete -->
 		</div>
 
 		<!-- FORM TO CREATE TODOS -->
