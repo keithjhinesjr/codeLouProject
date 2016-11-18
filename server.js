@@ -9,7 +9,7 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
 // config
-mongoose.connect(database.remoteUrl); 	// Connect to local database (currently using remote DB) 
+mongoose.connect(database.localUrl); 	// Connect to local database (also works with remote DB.  To use remote DB change 'localUrl' to 'remoteUrl' on line 12) 
 
 app.use(express.static('./public')); 		// sets the static files location /public/img will be /img for users
 app.use(morgan('dev')); // log every request to the console
